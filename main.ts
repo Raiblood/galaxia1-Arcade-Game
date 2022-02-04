@@ -17,13 +17,16 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpacePane, 200, 0)
+    music.pewPew.play()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
+    music.smallCrash.play()
     info.changeScoreBy(100)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
+    music.bigCrash.play()
     scene.cameraShake(4, 500)
     info.changeLifeBy(-1)
 })
@@ -78,4 +81,5 @@ forever(function () {
     if (info.score() == 1000) {
         game.over(true)
     }
+    music.playMelody("E C E D F C E D ", 120)
 })
